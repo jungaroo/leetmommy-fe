@@ -4,5 +4,39 @@
 }
 
 .Logo {
-  text-align: center;
+  height: auto;
+  width: 100%;
+}
+
+
+.Search-Form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+#Search-Section {
+  display: flex;
+  position: relative;
+}
+
+#Search-Section label {
+  position: absolute;
+  bottom: 14px;
+  left: 70px;
+}
+
+.Search-Bar {
+  
+  width: 100%;
+  margin: 20px 60px;
+  
+  outline: none;
+  text-indent: 30px;
+
+  /** Border **/
+  border-radius: 20px;
+  border: 1px;
+  border-color: rgb(144, 144, 144);
+  border-style: solid;
 }
