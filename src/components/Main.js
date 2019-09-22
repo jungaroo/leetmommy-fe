@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import SearchAPI from '../api/APIhelper';
 import { Button, ButtonGroup } from 'reactstrap';
 import '../styles/Main.css';
-import leetmommy from '../styles/leetmommy.png';
+import leetmommy from '../styles/lm-large.png';
 
 const COHORTS = ['r11', 'r12', 'r13'];
 
@@ -20,23 +20,25 @@ class Main extends Component {
 
   componentDidMount() {
     // When this page loads, ping the server to wake up heroku.
-    // Ping is async, but we don't need to wait for it
     SearchAPI.ping();
   }
 
   async handleSubmit(evt) {
     evt.preventDefault();
+
+    // Prepare the search word and cohort to send to the API
     const { searchWords, cohortSelection } = this.state;
     const words = searchWords.split(' ');
 
+    const links = await SearchAPI.indexSearch(words, cohortSelection);
+    // To do, use these links to render some component? Maybe push onto another Route?
+    console.log(links);
+    
+    // Reseet the 
     this.setState({
       ...this.state,
       searchWords: "",
     })
-    const links = await SearchAPI.indexSearch(words, cohortSelection);
-    // To do, use these links to render some component? Maybe push onto another Route?
-    console.log(links);
-
   }
 
   handleChange(evt) {
@@ -53,7 +55,8 @@ class Main extends Component {
 
   render() {
     return (
-      <div>
+      <div className="Main-Container" >
+
         <div>
           <img
             className="Logo"
