@@ -18,6 +18,8 @@ class Main extends Component {
   }
 
   componentDidMount() {
+    // When this page loads, ping the server to wake up heroku.
+    // Ping is async, but we don't need to wait for it
     SearchAPI.ping();
   }
 
@@ -27,6 +29,7 @@ class Main extends Component {
     const words = searchWords.split(' ');
 
     const links = await SearchAPI.indexSearch(words, cohortSelection);
+    // To do, use these links to render some component? Maybe push onto another Route?
     console.log(links);
   }
 
